@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  repolens-ai:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      # Override MONGO_URI to use the named mongo service with auth
+
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - repolens-network
+
+  mongo:
+    image: mongo:6
+    # Do NOT expose MongoDB port to host in production
+    # Remove the ports section if not needed for local debugging
+    ports:
+      - "127.0.0.1:27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: change_this_root_password
+      MONGO_INITDB_DATABASE: repolens
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok" ]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    networks:
+      - repolens-network
+
+networks:
+  repolens-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local

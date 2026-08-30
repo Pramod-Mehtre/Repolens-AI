@@ -1,0 +1,76 @@
+# ============================================
+# RepoLens AI — .gitignore
+# ============================================
+
+# --------------- Environment Variables ---------------
+# NEVER commit real .env files
+.env
+.env.*
+!.env.example
+
+# --------------- Dependencies ---------------
+node_modules/
+**/node_modules/
+
+# --------------- Build Output ---------------
+dist/
+build/
+.next/
+out/
+frontend/dist/
+
+# --------------- Logs ---------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --------------- OS Files ---------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --------------- IDE / Editor ---------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.user
+
+# --------------- Temporary Files ---------------
+*.tmp
+*.temp
+*.bak
+
+# --------------- Test Coverage ---------------
+coverage/
+.nyc_output/
+
+# --------------- Local Databases ---------------
+*.db
+*.sqlite
+*.sqlite3
+mongo-init.js
+
+# --------------- Secrets / Credentials ---------------
+*.pem
+*.key
+*.crt
+*.p12
+credentials.json
+service-account*.json
+client_secret*.json
+
+# --------------- Deployment Archives ---------------
+*.zip
+*.tar.gz
+*.tgz
+
+# --------------- Generated / Uploaded Files ---------------
+uploads/
+final_verify/

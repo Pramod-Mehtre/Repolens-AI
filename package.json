@@ -1,0 +1,14 @@
+{
+  "name": "repolens-ai-deployment",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace=repolens-ai-backend"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
