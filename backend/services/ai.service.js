@@ -229,7 +229,7 @@ Return ONLY valid JSON.`;
 }
 
 async function fetchAnalysisFromGroq(client, repoData, isLightweight, abortSignal) {
-  const modelName = isLightweight ? "llama-3.1-8b-instant" : "llama-3.3-70b-versatile";
+  const modelName = isLightweight ? "openai/gpt-oss-20b" : "openai/gpt-oss-120b";
   const prompt = isLightweight ? buildLightweightPrompt(repoData) : buildPrompt(repoData, false);
   const maxTokens = isLightweight ? 1200 : 3000;
 
